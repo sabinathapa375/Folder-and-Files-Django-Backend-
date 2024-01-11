@@ -63,7 +63,7 @@ const UserRegistrationForm=()=>{
    
                 <CardContent>
 
-            <Typography variant="h4" align="center">Sign Up</Typography>
+            <Typography variant="h4" align="center" color="purple"><b>Sign Up</b></Typography>
             <form onSubmit={handleSubmit}>
                 <TextField
                     variant = "filled"
@@ -101,7 +101,8 @@ const UserRegistrationForm=()=>{
                     type="submit"
                     fullWidth
                     variant="contained"
-                    sx={{ mt: 3, mb: 2 }}>Register</Button>
+                    sx={{ mt: 3, mb: 2 }}
+                    style={{ backgroundColor: '#8A2BE2', color: '#FFF' }}>Register</Button>
         </form>
                 </CardContent>
             </Card>

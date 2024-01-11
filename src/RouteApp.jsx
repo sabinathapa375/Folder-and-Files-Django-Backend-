@@ -6,13 +6,17 @@ import AdminFileList from "./components/AdminFileList";
 import FolderCreate from "./components/FolderCreate";
 import UserFile from "./components/UserFile";
 import FileList from "./components/FileList";
+import Dashboard from "./components/Dashboard";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
+
 const RouteApp=()=>{
+  
     return(
       <Router>
         <div>
           <Routes>
+            <Route path="/" element={<Dashboard/>}/>
             <Route path="/user-signup" element={<UserRegistrationForm/>}/>
             <Route path="/user-login" element={<UserLoginForm/>}/>
             <Route path="/file-upload" element={<UserFileUpload/>}/>

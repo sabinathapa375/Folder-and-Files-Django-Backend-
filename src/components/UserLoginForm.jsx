@@ -68,7 +68,7 @@ const UserLoginForm=()=>{
                 boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)', }}>
                 <CardContent>
                 <Container maxWidth="xs">
-            <Typography variant="h4" textAlign="center" color="red"><b>Login</b></Typography>
+            <Typography variant="h4" textAlign="center" color="purple"><b>Login</b></Typography>
             
         <form onSubmit={handleSubmit}>
             
@@ -108,7 +108,8 @@ const UserLoginForm=()=>{
                 type="submit"
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
-                fullWidth>Login</Button>
+                fullWidth
+                style={{ backgroundColor: '#8A2BE2', color: '#FFF' }}>Login</Button>
 
          </form>
          </Container>
