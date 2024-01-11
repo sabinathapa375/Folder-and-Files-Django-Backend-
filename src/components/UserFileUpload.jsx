@@ -6,6 +6,7 @@ import backgroundImage from '../assets/images/bg.jpg';
 import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import Person3OutlinedIcon from '@mui/icons-material/Person3Outlined';
+import Header from './Header';
 
 
 const UserFileUpload = () => {
@@ -50,6 +51,9 @@ const UserFileUpload = () => {
     checkIsSuperuser();
   }, []);
 
+  const handleButtonClick = ()=>{
+    window.location.href='user-file/'
+  }
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
@@ -74,39 +78,58 @@ const UserFileUpload = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log('File uploaded successfully');
-      // window.location.href = '/file-list';
-    } catch (error) {
+      alert('File uploaded successfully');
+      setFileName('');
+      setFileType('');
+      setFile(null);
+      setSelectedUser(null);
+
+     } catch (error) {
       alert('Error uploading file', error);
     }
+
   };
 
   return (
-     
-      <Box sx={{
-        backgroundImage:`url(${backgroundImage})`,
+     <Box sx={{
+      backgroundImage:`url(${backgroundImage})`,
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
+     }}>
+      <Header/>
+      <Box sx={{
+        display:"flex",
+        justifyContent:"center",
+      }}>
+      <Button type="submit" 
+        variant="contained"  
+        style={{ backgroundColor:'#d896ff', 
+        color: '#FFF', 
+        margin : '16px auto',
+        }}
+        onClick={handleButtonClick}>Show Files</Button>
+      </Box>
+        <Box sx={{
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         '.button-class':{
-          marginTop:1,
+          marginTop:2,
           marginBottom:0.5,
         }
         }}>
 
         <Card sx={{margin: 'auto',
-            padding: 1,
+            padding: 2,
             height: '100%',
             display: 'flex',  
             flexDirection: 'column',
             alignItems: 'center',
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)', }}>
-      <Typography variant="h5" color="red"><b>Upload Files</b></Typography>
+      <Typography variant="h5" color='#8A2BE2'><b>Upload Files</b></Typography>
       <form onSubmit={handleSubmit}>
         <TextField
           label="File Name"
@@ -167,12 +190,16 @@ const UserFileUpload = () => {
 
         <input type="file" onChange={handleFileChange} />
 
-        <Button className="button-class" type="submit" variant="contained" color="primary" fullWidth >
+        <Button className="button-class" type="submit" 
+        variant="contained"  
+        style={{ backgroundColor: '#8A2BE2', color: '#FFF' }} 
+        fullWidth >
           Upload File
         </Button>
       </form>
       </Card>
       </Box>
+     </Box>
      
   );
 }

@@ -1,15 +1,24 @@
 import React from "react";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
+import { Table, TableBody, Box, Button, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
 import { useLocation } from "react-router-dom";
+import Header from "./Header"
 
 const FileList = () => {
   const location = useLocation();
   const { state } = location;
   const { files, title } = state || { files: [], title: 'Files' };  
 
+  const handleGoBackClick = ()=>{
+    window.location.href='admin-file-list/'
+  }
   return (
     <div>
-      <Typography variant="h3">{title}</Typography>
+      <Header/>
+      <Typography 
+          variant="h4" 
+          color={'#8A2BE2'} 
+          textAlign={'center'}
+          sx={{mt:2}}>{title}</Typography>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -35,6 +44,9 @@ const FileList = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Box>
+      <Button onClick={handleGoBackClick}>&#9664; GO BACK</Button>
+      </Box>
     </div>
   );
 };

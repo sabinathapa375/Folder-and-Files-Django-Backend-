@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
+import Header from './Header';
+
 
 const UserFile = () => {
   const [clientFiles, setClientFiles] = useState([]);
@@ -46,10 +48,11 @@ const UserFile = () => {
 
   return (
     <div>
-      <h1>User File List</h1>
+      <Header/>
+      <h1 style={{color:"#8A2BE2", textAlign:"center"}}>User File List</h1>
        
         <div>
-          <h4>Client Files</h4>
+          <h4 style={{color:"#8A2BE2", textAlign:"center"}}>Client Files</h4>
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
@@ -79,7 +82,7 @@ const UserFile = () => {
             </Table>
           </TableContainer>
 
-          <h4>CPA Files</h4>
+          <h4 style={{color:"#8A2BE2", textAlign:"center"}}>CPA Files</h4>
           <TableContainer>
             <Table>
             <TableHead>

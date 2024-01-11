@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { FormControl, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import { FormControl,  MenuItem, Select, Typography } from '@mui/material';
 import FolderImage from '../assets/images/folder.jpg';
 import { useNavigate } from 'react-router-dom';
+import Header from './Header';
 
 const AdminFileList = () => {
   const [selectedUser, setSelectedUser] = useState('');
@@ -65,14 +66,24 @@ const AdminFileList = () => {
 
   return (
     <div>
-      <Typography variant="h4" textAlign={'center'}>
-        Admin File List
+      <Header/>
+      <Typography 
+          variant="h4" 
+          textAlign={'center'} 
+          color={'#8A2BE2'}
+          sx={{mt:5}}
+          >Admin File List
       </Typography>
       <div>
-        <FormControl>
-          <InputLabel id="selected_user_label">Select User</InputLabel>
+        <FormControl textAlign={'center'}>
+          <Typography variant="h5" 
+          textAlign={'center'} 
+          color={'#8A2BE2'}
+          sx={{mt:5}}
+                      >First Select the User</Typography>
+           
           <Select
-            labelId="selected_user_label"
+             
             id="selected_user"
             value={selectedUser}
             onChange={handleUserChange}

@@ -7,6 +7,7 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
 import backgroundImage from '../assets/images/bg.jpg';
+
  
 
 const UserRegistrationForm=()=>{
@@ -41,7 +42,8 @@ const UserRegistrationForm=()=>{
            }
     };
     return(
-        <Box sx={{
+        <Box>
+            <Box sx={{
             backgroundImage:`url(${backgroundImage})`,
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
@@ -52,6 +54,7 @@ const UserRegistrationForm=()=>{
             justifyContent: 'center',
             alignItems: 'center'
             }}>
+                 
             <Card sx={{ marginLeft: 'auto',  
         marginRight: 9.05,  
         padding: 1,
@@ -63,7 +66,7 @@ const UserRegistrationForm=()=>{
    
                 <CardContent>
 
-            <Typography variant="h4" align="center" color="purple"><b>Sign Up</b></Typography>
+            <Typography variant="h4" align="center" color='#8A2BE2'><b>Sign Up</b></Typography>
             <form onSubmit={handleSubmit}>
                 <TextField
                     variant = "filled"
@@ -106,6 +109,7 @@ const UserRegistrationForm=()=>{
         </form>
                 </CardContent>
             </Card>
+        </Box>
         </Box>
     )
 }

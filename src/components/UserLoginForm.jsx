@@ -8,7 +8,6 @@ import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import backgroundImage from '../assets/images/bg.jpg';
 
-
 const UserLoginForm=()=>{
     const [username, setusername]= useState('');
     const [password, setpassword]= useState('');
@@ -37,7 +36,7 @@ const UserLoginForm=()=>{
             Cookies.set('access_token', data.data.access_token);
             Cookies.set('refresh_token', data.data.refresh_token);
 
-            window.location.href = '/file-upload';
+            window.location.href = `/action-manage?username=${username}`;
             
         }
         catch (error){
@@ -68,7 +67,7 @@ const UserLoginForm=()=>{
                 boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)', }}>
                 <CardContent>
                 <Container maxWidth="xs">
-            <Typography variant="h4" textAlign="center" color="purple"><b>Login</b></Typography>
+            <Typography variant="h4" textAlign="center" color='#8A2BE2'><b>Login</b></Typography>
             
         <form onSubmit={handleSubmit}>
             
