@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useState } from "react";
 import Cookies from 'js-cookie'
-import { Container, CssBaseline, Typography, Button, TextField } from "@mui/material";
+import { Container, Box, Card, CardContent, Typography, Button, TextField } from "@mui/material";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
+import backgroundImage from '../assets/images/bg.jpg';
 
 
 const UserLoginForm=()=>{
@@ -45,13 +46,34 @@ const UserLoginForm=()=>{
 
     }
     return(
-        <Container maxWidth="xs">
-            <Typography variant="h3" textAlign="center">Login</Typography>
+
+        <Box sx={{
+            backgroundImage:`url(${backgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            minHeight: '100vh',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            }}>
+            <Card sx={{ margin: 'auto',  
+          
+                padding: 1,
+                height: '100%',
+                display: 'flex',  
+                flexDirection: 'column',
+                alignItems: 'center',
+                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)', }}>
+                <CardContent>
+                <Container maxWidth="xs">
+            <Typography variant="h4" textAlign="center" color="red"><b>Login</b></Typography>
             
         <form onSubmit={handleSubmit}>
             
             <TextField
-                variant="filled"
+                variant="outlined"
                 margin="normal"
                 fullWidth
                 id="username"
@@ -61,7 +83,7 @@ const UserLoginForm=()=>{
             
             <TextField
                 type="password"
-                variant="filled"
+                variant="outlined"
                 margin="normal"
                 fullWidth
                 id="password"
@@ -90,6 +112,10 @@ const UserLoginForm=()=>{
 
          </form>
          </Container>
+                </CardContent>
+                </Card>
+                </Box>
+       
     )
 }
 export default UserLoginForm;

@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { Button, FormControl, InputLabel, MenuItem, Select, TextField, Typography, Card , Box, InputAdornment} from "@mui/material";
+import backgroundImage from '../assets/images/bg.jpg';
+import InsertDriveFileOutlinedIcon from '@mui/icons-material/InsertDriveFileOutlined';
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import Person3OutlinedIcon from '@mui/icons-material/Person3Outlined';
 
-const FileUpload = () => {
+
+const UserFileUpload = () => {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
   const [fileType, setFileType] = useState('');
   const [isSuperuser, setIsSuperuser] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [users, setUsers] = useState([]);
- 
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -21,7 +26,7 @@ const FileUpload = () => {
           },
         });
         setUsers(response.data);
-       } catch (error) {
+      } catch (error) {
         alert('Error fetching users', error);
       }
     };
@@ -34,7 +39,7 @@ const FileUpload = () => {
             Authorization: `Bearer ${accessToken}`,
           },
         });
-         
+
         setIsSuperuser(response.data);
       } catch (error) {
         alert('Error checking superuser status', error);
@@ -51,14 +56,14 @@ const FileUpload = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
- 
+
     const formData = new FormData();
     formData.append('name', fileName);
     formData.append('file_type', fileType);
     formData.append('file', file, file.name);
- 
+
     if (isSuperuser) {
-      formData.append('for_user_id', selectedUser.id);  
+      formData.append('for_user_id', selectedUser.id);
     }
     const accessToken = Cookies.get('access_token');
 
@@ -75,45 +80,101 @@ const FileUpload = () => {
       alert('Error uploading file', error);
     }
   };
- 
-  return (
-    <div>
-      <h3>Upload Files</h3>
-      <form onSubmit={handleSubmit}>
-        <label>
-          File Name:
-          <input type="text" value={fileName} onChange={(e) => setFileName(e.target.value)} />
-        </label><br/>
 
-        <label>
-          File Type:
-          <select value={fileType} onChange={(e) => setFileType(e.target.value)}>
-            <option value="Contract">Contract</option>
-            <option value="Document">Document</option>
-          </select><br/>
-        </label>
+  return (
+     
+      <Box sx={{
+        backgroundImage:`url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        '.button-class':{
+          marginTop:1,
+          marginBottom:0.5,
+        }
+        }}>
+
+        <Card sx={{margin: 'auto',
+            padding: 1,
+            height: '100%',
+            display: 'flex',  
+            flexDirection: 'column',
+            alignItems: 'center',
+            boxShadow: '0 4px 8px rgba(0, 0, 0, 0.5)', }}>
+      <Typography variant="h5" color="red"><b>Upload Files</b></Typography>
+      <form onSubmit={handleSubmit}>
+        <TextField
+          label="File Name"
+          type="text"
+          value={fileName}
+          onChange={(e) => setFileName(e.target.value)}
+          fullWidth
+          margin="normal"
+          variant="outlined"
+          InputProps={{
+            startAdornment:(
+              <InputAdornment position="start">
+                  <InsertDriveFileOutlinedIcon/>
+              </InputAdornment>
+            ),
+          }}
+        />
+
+        <FormControl fullWidth margin="normal">
+          <InputLabel id="file-type-label">File Type</InputLabel>
+          <Select
+            labelId="file-type-label"
+            value={fileType}
+            margin="normal"
+           
+            onChange={(e) => setFileType(e.target.value)}
+            startAdornment={
+              <InputAdornment position="start">
+                <ArticleOutlinedIcon/>
+              </InputAdornment>
+            }>
+            <MenuItem value="Contract">Contract</MenuItem>
+            <MenuItem value="Document">Document</MenuItem>
+          </Select>
+        </FormControl>
 
         {isSuperuser && (
-          <label>
-            Select User:
-            <select value={selectedUser ? selectedUser.id : ""} onChange={(e) => setSelectedUser(users.find(user => user.id === parseInt(e.target.value)) || null)}>
-              <option value="">-- Select User --</option>
+          <FormControl fullWidth margin="normal">
+            <InputLabel id="select-user-label">Select User</InputLabel>
+            <Select
+              labelId="select-user-label"
+               
+              value={selectedUser ? selectedUser.id : ""}
+              onChange={(e) => setSelectedUser(users.find(user => user.id === parseInt(e.target.value)) || null)}
+              startAdornment={
+                <InputAdornment position="start">
+                    <Person3OutlinedIcon/>
+                </InputAdornment>
+              }
+            >
+              <MenuItem value="">-- Select User --</MenuItem>
               {Array.isArray(users) && users.length > 0 && users.map((user) => (
-                <option key={user.id} value={user.id}>{user.username}</option>
+                <MenuItem key={user.id} value={user.id}>{user.username}</MenuItem>
               ))}
-            </select><br/>
-          </label>
+            </Select>
+          </FormControl>
         )}
 
-        <label>
-          Choose File:
-          <input type="file" onChange={handleFileChange} />
-        </label><br/>
+        <input type="file" onChange={handleFileChange} />
 
-        <button type="submit">Upload File</button>
+        <Button className="button-class" type="submit" variant="contained" color="primary" fullWidth >
+          Upload File
+        </Button>
       </form>
-    </div>
+      </Card>
+      </Box>
+     
   );
 }
 
-export default FileUpload;
+export default UserFileUpload;
