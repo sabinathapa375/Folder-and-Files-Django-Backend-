@@ -23,6 +23,7 @@ const RouteApp=()=>{
             <Route path="/action-manage" element={<AfterLogin/>}/>
             <Route path="/file-upload" element={<UserFileUpload/>}/>
             <Route path="/admin-file-list" element={<AdminFileList/>}/>
+            <Route path="/file-upload/admin-file-list/" element={<AdminFileList/>}/>
             <Route path="/folder-create" element={<FolderCreate/>}/>
             <Route path="/file-upload/user-file" element={<UserFile/>}/>
             <Route path="/user-file" element={<UserFile/>}/>

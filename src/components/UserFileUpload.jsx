@@ -17,6 +17,8 @@ const UserFileUpload = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [users, setUsers] = useState([]);
 
+  
+
   useEffect(() => {
     const fetchUsers = async () => {
       const accessToken = Cookies.get('access_token');
@@ -52,7 +54,12 @@ const UserFileUpload = () => {
   }, []);
 
   const handleButtonClick = ()=>{
-    window.location.href='user-file/'
+    if (isSuperuser){
+      window.location.href='admin-file-list/'
+  }
+  else{
+      window.location.href='user-file/'
+  }
   }
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);

@@ -13,7 +13,14 @@ const AfterLogin = () => {
     }
 
     const handleListButton=()=>{
-        window.location.href='user-file/'
+        if (username==='admin' || username === 'superuser'){
+            window.location.href='admin-file-list/'
+        }
+        else{
+            window.location.href='user-file/'
+        }
+
+        
 
     }
     
